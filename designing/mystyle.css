@@ -1,0 +1,24 @@
+h1,h2,h3{
+			color:red;
+			background-color:yellow;
+			font-size:30px;
+			text-align:center;
+		}
+		
+		.raj{
+			color:green;
+			background-color:pink;
+		}
+		.underline{
+			text-decoration:underline;
+		}
+		
+		#rajesh{
+			color:orange;
+			background-color:blue;
+		}
+		
+		
+		h4.test{
+			text-align:center;
+		}
