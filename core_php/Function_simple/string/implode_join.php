@@ -1,5 +1,5 @@
 <?php
-$im=array("Pratik","Shah");  //convert array in string
-echo (implode("",$im))."<br>";
-echo(join("",$im));
+$arr=array("Pratik","Shah");  //convert array in string
+echo $string=implode(",",$arr)."<br>";
+echo(join(",",$arr));
 ?>

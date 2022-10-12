@@ -42,7 +42,7 @@ include_once('header.php');
 								</div>
 								<div class="col-6 form-group">
 									<br>
-									<a href="login.php">CLICK HERE FOR LOGIN</a>
+									<a href="login">CLICK HERE FOR LOGIN</a>
 								</div>
                             </div>
                             

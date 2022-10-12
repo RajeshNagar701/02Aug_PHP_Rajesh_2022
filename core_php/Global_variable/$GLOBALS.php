@@ -30,10 +30,5 @@ echo $z;
 
 
 
-session_start();
-
-echo $_SESSION['user']."<br>";
-
-echo $_COOKIE['user'];
 
 ?>

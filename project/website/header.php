@@ -30,6 +30,18 @@
 </head>
 
 <body>
+
+<?php
+	function active($currect_page){
+	  $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
+	  $url = end($url_array);  
+	  if($currect_page == $url){
+		  echo 'active'; //class name in css 
+	  } 
+	}
+	?>
+
+
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark py-3 px-lg-5 d-none d-lg-block">
         <div class="row">
@@ -76,26 +88,26 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.php" class="nav-item nav-link active">Home</a>
-                        <a href="about.php" class="nav-item nav-link">About</a>
-                        <a href="service.php" class="nav-item nav-link">Service</a>
+                        <a href="index" class="nav-item nav-link <?php active('index')?>">Home</a>
+                        <a href="about" class="nav-item nav-link <?php active('about')?>">About</a>
+                        <a href="service" class="nav-item nav-link <?php active('service')?>">Service</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cars</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="car.php" class="dropdown-item">Car Listing</a>
-                                <a href="detail.php" class="dropdown-item">Car Detail</a>
-                                <a href="booking.php" class="dropdown-item">Car Booking</a>
+                                <a href="car" class="dropdown-item <?php active('car')?>">Car Listing</a>
+                                <a href="detail" class="dropdown-item <?php active('detail')?>">Car Detail</a>
+                                <a href="booking" class="dropdown-item <?php active('booking')?>">Car Booking</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="team.php" class="dropdown-item">The Team</a>
-                                <a href="testimonial.php" class="dropdown-item">Testimonial</a>
+                                <a href="team" class="dropdown-item <?php active('team')?>">The Team</a>
+                                <a href="testimonial" class="dropdown-item <?php active('testimonial')?>">Testimonial</a>
                             </div>
                         </div>
-                        <a href="contact.php" class="nav-item nav-link">Contact</a>
-						<a href="login.php" class="nav-item nav-link">Login</a>
+                        <a href="contact" class="nav-item nav-link <?php active('contact')?>">Contact</a>
+						<a href="login" class="nav-item nav-link  <?php active('login')?>">Login</a>
                     </div>
                 </div>
             </nav>

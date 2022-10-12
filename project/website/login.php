@@ -37,7 +37,7 @@ include_once('header.php');
 								</div>
 								<div class="col-6 form-group">
 									<br>
-									<a href="register.php">CLICK HERE FOR REGISTER</a>
+									<a href="register">CLICK HERE FOR REGISTER</a>
 								</div>
                             </div>
                             

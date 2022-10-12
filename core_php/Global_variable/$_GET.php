@@ -7,15 +7,7 @@
 <!-- 
 Method  2
 
-
-
-
-
-
 -->
-
-
-
 <form action="" method="get">
     
 	<p>Name: <input type="text" name="name"/></p>
@@ -29,8 +21,8 @@ Method  2
 
 if(isset($_GET['submit']))
 {
-	echo $name=$_GET['name'];
-	echo $age=$_GET['age'];
+	echo $_GET['name'];
+	echo $_GET['age'];
 }
 ?>
 

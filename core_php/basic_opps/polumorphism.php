@@ -54,7 +54,7 @@ class xyz extends abc
 	
 	function sum($a,$b)
 	{
-		abc::sum(5,7);  // for overidding use scope resolution ::
+		abc::sum(5,7);
 		echo $a*$b;
 	}
 }

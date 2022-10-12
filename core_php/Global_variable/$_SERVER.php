@@ -19,5 +19,10 @@ echo "<br>";
 echo $_SERVER['HTTP_REFERER']."<br>";
 
 
+session_start();
 
+echo $_SESSION['user']."<br>";
+
+echo $_COOKIE['user'];
 ?>
+5
