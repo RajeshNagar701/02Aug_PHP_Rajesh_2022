@@ -1,9 +1,14 @@
 <?php
-class control
+
+include_once('model.php');  // step 1  load mopdel 
+
+class control extends model // step 2 extends model
 {
 	
 	function __construct()
 	{
+		model::__construct(); // step 3 call model __construct();
+		
 		$path=$_SERVER['PATH_INFO'];// http://localhost/students/02Aug_PHP_Rajesh/project/website/control.php
 		
 		switch($path)
@@ -17,14 +22,18 @@ class control
 			break;
 			
 			case '/about':
+			$customer_arr=$this->select('customer');
+			print_r($customer_arr);
 			include_once('about.php');
 			break;
 			
 			case '/service':
+			
 			include_once('service.php');
 			break;
 			
 			case '/car':
+			$car_arr=$this->select('car');
 			include_once('car.php');
 			break;
 			

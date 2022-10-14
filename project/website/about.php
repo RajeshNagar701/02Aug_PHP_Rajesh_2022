@@ -1,3 +1,22 @@
+<table	border="1">
+<?php
+foreach($customer_arr as $data)
+{
+?>
+
+	<tr>
+		<td><?php echo $data->cust_id;?></td>
+		<td><?php echo $data->name;?></td>
+		<td><?php echo $data->username;?></td>
+		<td><?php echo $data->password;?></td>
+		<td><?php echo $data->gender;?></td>
+	</tr>
+
+<?php	
+}
+?>
+
+</table>
 <?php
 include_once('header.php');
 ?>
