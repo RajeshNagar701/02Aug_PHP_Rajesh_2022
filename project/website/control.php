@@ -59,7 +59,38 @@ class control extends model // step 2 extends model
 			break;
 			
 			case '/login':
-			include_once('contact.php');
+			include_once('login.php');
+			break;
+			
+			case '/register':
+			if(isset($_REQUEST['submit']))
+			{
+				$name=$_REQUEST['name'];
+				$email=$_REQUEST['email'];
+				$unm=$_REQUEST['unm'];
+				$pass=$_REQUEST['pass'];
+				$gen=$_REQUEST['gen'];
+				$lag_arr=$_REQUEST['lag'];
+				$lag=implode(",",$lag_arr);
+				
+				echo $file=$_FILES['file']['name'];  // get only input type="file"
+				$path='img/upload/'.$file;   // PATH
+				$tmp_file=$_FILES['file']['tmp_name']; // GET DUPLICATE IMG
+				move_uploaded_file($tmp_file,$path); // MOVE DUP IMG IN PATH
+				
+				$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"pass"=>$pass,"gen"=>$gen,"lag"=>$lag,"file"=>$file);
+				
+				$res=$this->insert('customer',$data);
+				if($res)
+				{
+					echo "<script> alert('register Success')</script>";
+				}
+				else
+				{
+					echo "FGAILED";
+				}
+			}
+			include_once('register.php');
 			break;
 			
 			case '/logout':

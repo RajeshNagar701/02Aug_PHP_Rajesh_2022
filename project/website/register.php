@@ -22,23 +22,38 @@ include_once('header.php');
             <div class="row">
                 <div class="col-lg-12 mb-2">
                     <div class="contact-form bg-light mb-4" style="padding: 30px;">
-                        <form>
+                        <form action="" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-6 form-group">
-                                    <input type="text" class="form-control p-4" placeholder="Your Name" required="required">
+                                    <input type="text" class="form-control p-4" name="name" placeholder="Your Name" required="required">
                                 </div>
 								<div class="col-6 form-group">
-                                    <input type="email" class="form-control p-4" placeholder="Your Email" required="required">
+                                    <input type="email" name="email" class="form-control p-4" placeholder="Your Email" required="required">
                                 </div>
 								<div class="col-6 form-group">
-									<input type="password" class="form-control p-4" placeholder="password" required="required">
+                                    <input type="text" name="unm" class="form-control p-4" placeholder="Your User Name" required="required">
+                                </div>
+								<div class="col-6 form-group">
+									<input type="password" name="pass" class="form-control p-4"  placeholder="password" required="required">
 								</div>
 								<div class="col-6 form-group">
-									<input type="number" class="form-control p-4" placeholder="Mobile" required="required">
+									<h6>Choose Gender</h6>
+									Male: <input type="radio" name="gen" value="Male" >
+									Female: <input type="radio" name="gen" value="Female">
+								</div>
+								<div class="col-6 form-group">
+									<h6>Choose Lag</h6>
+									Hindi: <input type="checkbox" name="lag[]" value="Hindi" >
+									English: <input type="checkbox" name="lag[]" value="English">
+									Gujarati: <input type="checkbox" name="lag[]" value="Gujarati">
 								</div>
                                 
 								<div class="col-6 form-group">
-									<button class="btn btn-primary py-3 px-5" type="submit">Register</button>
+									<input type="file" name="file" class="form-control "  required="required">
+								</div>
+								
+								<div class="col-6 form-group">
+									<button type="submit" name="submit" class="btn btn-primary py-3 px-5" type="submit">Register</button>
 								</div>
 								<div class="col-6 form-group">
 									<br>

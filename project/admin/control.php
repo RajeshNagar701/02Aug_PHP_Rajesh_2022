@@ -1,9 +1,14 @@
 <?php
-class control
+
+include_once('../website/model.php');  // step 1  load mopdel 
+
+class control extends model // step 2 extends model
 {
 	
 	function __construct()
 	{
+		model::__construct(); // step 3 call model __construct();
+		
 		$path=$_SERVER['PATH_INFO'];// http://localhost/students/02Aug_PHP_Rajesh/project/website/control.php
 		
 		switch($path)
