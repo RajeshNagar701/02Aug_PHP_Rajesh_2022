@@ -99,15 +99,29 @@
                                 <a href="booking" class="dropdown-item <?php active('booking')?>">Car Booking</a>
                             </div>
                         </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="team" class="dropdown-item <?php active('team')?>">The Team</a>
-                                <a href="testimonial" class="dropdown-item <?php active('testimonial')?>">Testimonial</a>
-                            </div>
-                        </div>
-                        <a href="contact" class="nav-item nav-link <?php active('contact')?>">Contact</a>
-						<a href="login" class="nav-item nav-link  <?php active('login')?>">Login</a>
+						<a href="contact" class="nav-item nav-link <?php active('contact')?>">Contact</a>
+                        
+						<?php
+						if(isset($_SESSION['user']))
+						{
+						?>
+							<div class="nav-item dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User</a>
+								<div class="dropdown-menu rounded-0 m-0">
+									<a href="team" class="dropdown-item <?php active('team')?>">Profile</a>
+									<a href="testimonial" class="dropdown-item <?php active('testimonial')?>">Testimonial</a>
+								</div>
+							</div>
+							<a href="logout" class="nav-item nav-link  <?php active('logout')?>">Logout</a>
+						<?php
+						}
+						else
+						{
+						?>
+							<a href="login" class="nav-item nav-link  <?php active('login')?>">Login</a>
+						<?php
+						}
+						?>
                     </div>
                 </div>
             </nav>

@@ -7,6 +7,7 @@ class control extends model // step 2 extends model
 	
 	function __construct()
 	{
+		session_start();
 		model::__construct(); // step 3 call model __construct();
 		
 		$path=$_SERVER['PATH_INFO'];// http://localhost/students/02Aug_PHP_Rajesh/project/website/control.php
@@ -58,9 +59,6 @@ class control extends model // step 2 extends model
 			include_once('contact.php');
 			break;
 			
-			case '/login':
-			include_once('login.php');
-			break;
 			
 			case '/register':
 			if(isset($_REQUEST['submit']))
@@ -69,6 +67,7 @@ class control extends model // step 2 extends model
 				$email=$_REQUEST['email'];
 				$unm=$_REQUEST['unm'];
 				$pass=$_REQUEST['pass'];
+				$enc_pass=md5($pass);
 				$gen=$_REQUEST['gen'];
 				$lag_arr=$_REQUEST['lag'];
 				$lag=implode(",",$lag_arr);
@@ -78,7 +77,7 @@ class control extends model // step 2 extends model
 				$tmp_file=$_FILES['file']['tmp_name']; // GET DUPLICATE IMG
 				move_uploaded_file($tmp_file,$path); // MOVE DUP IMG IN PATH
 				
-				$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"pass"=>$pass,"gen"=>$gen,"lag"=>$lag,"file"=>$file);
+				$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"pass"=>$enc_pass,"gen"=>$gen,"lag"=>$lag,"file"=>$file);
 				
 				$res=$this->insert('customer',$data);
 				if($res)
@@ -93,8 +92,47 @@ class control extends model // step 2 extends model
 			include_once('register.php');
 			break;
 			
-			case '/logout':
 			
+			case '/login':
+			if(isset($_REQUEST['login']))
+			{
+				$unm=$_REQUEST['unm'];
+				$pass=$_REQUEST['pass'];
+				$enc_pass=md5($pass);
+				
+				$where=array("unm"=>$unm,"pass"=>$enc_pass,"status"=>"Unblock");
+				
+				$run=$this->select_where('customer',$where);
+				$chk=$run->num_rows; // all cond true or false by rows
+				if($chk==1) // 1 means true
+				{
+					
+					$_SESSION['user']=$unm;
+					echo "<script> alert('Login Success'); 
+					window.location='index';
+					</script>";
+					
+					
+					
+				}
+				else
+				{
+					echo "<script> alert('Login Failed'); 
+					</script>";
+				}
+				
+			}
+			include_once('login.php');
+			break;
+			
+			
+			
+			case '/logout':
+			unset($_SESSION['user']);
+			echo "<script> alert('Logout Success'); 
+			window.location='index';
+			</script>";
+					
 			break;
 			
 		}

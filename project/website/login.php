@@ -1,5 +1,9 @@
 <?php
 include_once('header.php');
+if(isset($_SESSION['user']))
+{
+	echo "<script>window.location='index';</script>";
+}
 ?>
 
 
@@ -22,18 +26,18 @@ include_once('header.php');
             <div class="row">
                 <div class="col-lg-12 mb-2">
                     <div class="contact-form bg-light mb-4" style="padding: 30px;">
-                        <form>
+                        <form method="post">
                             <div class="row">
                                
                                 <div class="col-6 form-group">
-                                    <input type="email" class="form-control p-4" placeholder="Your Email" required="required">
+                                    <input type="text"  name="unm" class="form-control p-4" placeholder="Your Email" required="required">
                                 </div>
 								<div class="col-6 form-group">
-									<input type="password" class="form-control p-4" placeholder="password" required="required">
+									<input type="password" name="pass" class="form-control p-4" placeholder="password" required="required">
 								</div>
 								
 								<div class="col-6 form-group">
-									<button class="btn btn-primary py-3 px-5" type="submit">Login</button>
+									<button class="btn btn-primary py-3 px-5" name="login" value="login" type="submit">Login</button>
 								</div>
 								<div class="col-6 form-group">
 									<br>

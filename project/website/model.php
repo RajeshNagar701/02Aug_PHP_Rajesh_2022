@@ -33,6 +33,24 @@ class model
 		return $run;
 	}
 	
+	function select_where($tbl,$where)
+	{
+		$array_key=array_keys($where);
+		$array_values=array_values($where);
+		
+		$sel="select * from $tbl where 1=1"; // 1=1 means query continue
+		$i=0;
+		foreach($where as $w)
+		{
+			$sel.=" and $array_key[$i]='$array_values[$i]'";
+			$i++;
+		}
+		$run=$this->conn->query($sel);
+		return $run;
+		
+	}
+	
+	
 	
 }
 $obj=new model;
