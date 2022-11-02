@@ -33,6 +33,8 @@ class model
 		return $run;
 	}
 	
+	
+	 // login and fetch data
 	function select_where($tbl,$where)
 	{
 		$array_key=array_keys($where);

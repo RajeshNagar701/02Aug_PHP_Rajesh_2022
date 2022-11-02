@@ -23,8 +23,6 @@ class control extends model // step 2 extends model
 			break;
 			
 			case '/about':
-			$customer_arr=$this->select('customer');
-			print_r($customer_arr);
 			include_once('about.php');
 			break;
 			
@@ -34,7 +32,6 @@ class control extends model // step 2 extends model
 			break;
 			
 			case '/car':
-			$car_arr=$this->select('car');
 			include_once('car.php');
 			break;
 			
@@ -46,8 +43,11 @@ class control extends model // step 2 extends model
 			include_once('booking.php');
 			break;
 			
-			case '/team':
-			include_once('team.php');
+			case '/profile':
+			$where=array('uid'=>$_SESSION['uid']);
+			$run=$this->select_where('customer',$where);
+			$fetch=$run->fetch_object();
+			include_once('profile.php');
 			break;
 			
 			case '/testimonial':
@@ -104,16 +104,21 @@ class control extends model // step 2 extends model
 				
 				$run=$this->select_where('customer',$where);
 				$chk=$run->num_rows; // all cond true or false by rows
+				
 				if($chk==1) // 1 means true
 				{
 					
+					$fetch=$run->fetch_object(); //
+					$uid=$fetch->uid;						
+					$name=$fetch->name;	
+					
+					$_SESSION['uid']=$uid;
+					$_SESSION['name']=$name;
 					$_SESSION['user']=$unm;
+					
 					echo "<script> alert('Login Success'); 
 					window.location='index';
-					</script>";
-					
-					
-					
+					</script>";	
 				}
 				else
 				{
@@ -128,6 +133,8 @@ class control extends model // step 2 extends model
 			
 			
 			case '/logout':
+			unset($_SESSION['name']);
+			unset($_SESSION['id']);
 			unset($_SESSION['user']);
 			echo "<script> alert('Logout Success'); 
 			window.location='index';

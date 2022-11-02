@@ -102,13 +102,13 @@
 						<a href="contact" class="nav-item nav-link <?php active('contact')?>">Contact</a>
                         
 						<?php
-						if(isset($_SESSION['user']))
+						if(isset($_SESSION['uid']))
 						{
 						?>
 							<div class="nav-item dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User</a>
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Hi <?php echo $_SESSION['name']?></a>
 								<div class="dropdown-menu rounded-0 m-0">
-									<a href="team" class="dropdown-item <?php active('team')?>">Profile</a>
+									<a href="profile" class="dropdown-item <?php active('team')?>">Profile</a>
 									<a href="testimonial" class="dropdown-item <?php active('testimonial')?>">Testimonial</a>
 								</div>
 							</div>
