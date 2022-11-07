@@ -1,3 +1,13 @@
+<?php
+if(isset($_SESSION['aid']))
+{
+	
+}
+else
+{
+	echo "<script>window.location='admin';</script>";
+}
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -67,7 +77,9 @@
 					<li>
                         <a href="manage_user"><i class="fa fa-desktop "></i>User</a>
                     </li>
-                   
+					<li>
+                        <a href="admin_logout"><i class="fa fa-desktop "></i>Logout</a>
+                    </li>
                 </ul>
 
             </div>

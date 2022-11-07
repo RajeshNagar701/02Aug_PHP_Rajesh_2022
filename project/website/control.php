@@ -50,6 +50,67 @@ class control extends model // step 2 extends model
 			include_once('profile.php');
 			break;
 			
+			
+			case '/editprofile':
+			if(isset($_REQUEST['btnuid']))
+			{
+				$uid=$_REQUEST['btnuid'];
+				$where=array('uid'=>$uid);
+				$run=$this->select_where('customer',$where);
+				$fetch=$run->fetch_object();
+				
+				$old_file=$fetch->file;
+				
+				if(isset($_REQUEST['submit']))
+				{
+					$name=$_REQUEST['name'];
+					$email=$_REQUEST['email'];
+					$unm=$_REQUEST['unm'];
+					$gen=$_REQUEST['gen'];
+					$lag_arr=$_REQUEST['lag'];
+					$lag=implode(",",$lag_arr);
+					
+					
+					
+					$file=$_FILES['file']['name'];  // get only input type="file"
+					$path='img/upload/'.$file;   // PATH
+					$tmp_file=$_FILES['file']['tmp_name']; // GET DUPLICATE IMG
+					move_uploaded_file($tmp_file,$path); // MOVE DUP IMG IN PATH
+					
+					if($_FILES['file']['size']>0)
+					{
+						$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"gen"=>$gen,"lag"=>$lag,"file"=>$file);
+						$res=$this->update_where('customer',$data,$where);
+						if($res)
+						{
+							unlink('img/upload/'.$old_file); // if file get then old file delete
+							echo "
+							<script> alert('Update Success');
+							window.location='profile';
+							</script>";
+						}
+					}
+					else
+					{
+						$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"gen"=>$gen,"lag"=>$lag);
+						$res=$this->update_where('customer',$data,$where);
+						if($res)
+						{
+							echo "
+							<script> alert('Update Success');
+							window.location='profile';
+							</script>";
+						}
+					}
+					
+				}
+				
+			}
+			include_once('editprofile.php');
+			break;
+		
+			
+			
 			case '/testimonial':
 			include_once('testimonial.php');
 			break;
@@ -134,7 +195,7 @@ class control extends model // step 2 extends model
 			
 			case '/logout':
 			unset($_SESSION['name']);
-			unset($_SESSION['id']);
+			unset($_SESSION['uid']);
 			unset($_SESSION['user']);
 			echo "<script> alert('Logout Success'); 
 			window.location='index';

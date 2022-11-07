@@ -102,7 +102,8 @@
 						<a href="contact" class="nav-item nav-link <?php active('contact')?>">Contact</a>
                         
 						<?php
-						if(isset($_SESSION['uid']))
+						if(isset($_SESSION['name']))
+						if(isset($_SESSION['name']))
 						{
 						?>
 							<div class="nav-item dropdown">

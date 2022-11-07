@@ -28,7 +28,7 @@ include_once('header.php');
                         <p class="m-0">Email :<?php echo $fetch->email?></p>
 						<p class="m-0">Gender :<?php echo $fetch->gen?></p>
                         <p class="m-0">Languages :<?php echo $fetch->lag?></p>
-						<button class="btn btn-success mt-2">Edit</button>
+						<button class="btn btn-success mt-2"><a href="editprofile?btnuid=<?php echo $fetch->uid?>"> Edit</a></button>
                     </div>
                 </div>
                

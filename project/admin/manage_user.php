@@ -12,22 +12,28 @@ include_once('header.php');
                                 <tr>
                                     <th>#</th>
                                     <th>First Name</th>
-                                    <th>Last Name</th>
+                                    <th>Email</th>
                                     <th>Username</th>
 									<th>Delete</th>
 									<th>Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
+							<?php 
+							foreach($fetch as $d)
+							{
+							?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-									<td><a href="" class="btn btn-danger">Delete</a></td>
-									<td><a href="" class="btn btn-primary">Edit</a></td>
+                                    <td><?php echo $d->uid?></td>
+                                    <td><?php echo $d->name?></td>
+                                    <td><?php echo $d->email?></td>
+                                    <td>@<?php echo $d->unm?></td>
+									<td><a href="delete?deluid=<?php echo $d->uid?>" class="btn btn-danger">Delete</a></td>
+									<td><a href="admin_custedit?edtbtn=<?php echo $d->uid?>" class="btn btn-primary">Edit</a></td>
                                 </tr>
-                                
+                            <?php
+							}
+							?> 
                             </tbody>
                         </table>
 

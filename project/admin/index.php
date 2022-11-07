@@ -1,3 +1,9 @@
+<?php
+if(isset($_SESSION['aid']))
+{
+	echo "<script>window.location='dashboard';</script>";
+}
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -56,22 +62,24 @@
 						<br>
 						<br>
 						<div class="row" style="padding:20px">
-							<div class="col-md-6">	
-							<div class="form-group">
-								<label>User Name</label>
-								<input type="text" name="name" class="form-control" />
-							   
+							<div class="col-md-6">
+							<form action="" method="post">	
+								<div class="form-group">
+									<label>User Name</label>
+									<input type="text" name="unm" class="form-control" />
+								   
+								</div>
+								<div class="form-group">
+									<label>Password</label>
+									<input type="password" name="pass" class="form-control" />
+								   
+								</div>
+								<div class="form-group">
+									
+									<input type="submit" name="admin_login" value="Login" class="btn btn-primary" />
+								   
 							</div>
-							<div class="form-group">
-								<label>Password</label>
-								<input type="password" name="password" class="form-control" />
-							   
-							</div>
-							<div class="form-group">
-								
-								<input type="submit" name="submit" value="Login" class="btn btn-primary" />
-							   
-							</div>
+							</form>
 							</div>
 						</div>	
 						
