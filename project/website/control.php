@@ -45,13 +45,14 @@ class control extends model // step 2 extends model
 			
 			case '/profile':
 			$where=array('uid'=>$_SESSION['uid']);
-			$run=$this->select_where('customer',$where);
+			$run=$this->select_where_join2('customer','country','customer.cid=country.cid',$where);
 			$fetch=$run->fetch_object();
 			include_once('profile.php');
 			break;
 			
 			
 			case '/editprofile':
+			$country=$this->select('country');
 			if(isset($_REQUEST['btnuid']))
 			{
 				$uid=$_REQUEST['btnuid'];
@@ -77,9 +78,11 @@ class control extends model // step 2 extends model
 					$tmp_file=$_FILES['file']['tmp_name']; // GET DUPLICATE IMG
 					move_uploaded_file($tmp_file,$path); // MOVE DUP IMG IN PATH
 					
+					$cid=$_REQUEST['cid'];
+					
 					if($_FILES['file']['size']>0)
 					{
-						$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"gen"=>$gen,"lag"=>$lag,"file"=>$file);
+						$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"gen"=>$gen,"lag"=>$lag,"file"=>$file,"cid"=>$cid);
 						$res=$this->update_where('customer',$data,$where);
 						if($res)
 						{
@@ -92,7 +95,7 @@ class control extends model // step 2 extends model
 					}
 					else
 					{
-						$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"gen"=>$gen,"lag"=>$lag);
+						$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"gen"=>$gen,"lag"=>$lag,"cid"=>$cid);
 						$res=$this->update_where('customer',$data,$where);
 						if($res)
 						{
@@ -122,6 +125,8 @@ class control extends model // step 2 extends model
 			
 			
 			case '/register':
+			$country=$this->select('country');
+			
 			if(isset($_REQUEST['submit']))
 			{
 				$name=$_REQUEST['name'];
@@ -138,7 +143,10 @@ class control extends model // step 2 extends model
 				$tmp_file=$_FILES['file']['tmp_name']; // GET DUPLICATE IMG
 				move_uploaded_file($tmp_file,$path); // MOVE DUP IMG IN PATH
 				
-				$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"pass"=>$enc_pass,"gen"=>$gen,"lag"=>$lag,"file"=>$file);
+				
+				$cid=$_REQUEST['cid'];
+				
+				$data=array("name"=>$name,"email"=>$email,"unm"=>$unm,"pass"=>$enc_pass,"gen"=>$gen,"lag"=>$lag,"file"=>$file,"cid"=>$cid);
 				
 				$res=$this->insert('customer',$data);
 				if($res)
@@ -168,6 +176,12 @@ class control extends model // step 2 extends model
 				
 				if($chk==1) // 1 means true
 				{
+					
+					if(isset($_REQUEST['rem']))
+					{
+						setcookie('unm',$unm,time()+15);
+						setcookie('pass',$pass,time()+15);
+					}
 					
 					$fetch=$run->fetch_object(); //
 					$uid=$fetch->uid;						

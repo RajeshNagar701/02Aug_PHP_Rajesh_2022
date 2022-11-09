@@ -30,10 +30,14 @@ if(isset($_SESSION['user']))
                             <div class="row">
                                
                                 <div class="col-6 form-group">
-                                    <input type="text"  name="unm" class="form-control p-4" placeholder="Your Email" required="required">
+                                    <input type="text"  name="unm" class="form-control p-4" placeholder="Your Email" value="<?php if(isset($_COOKIE['unm'])){ echo $_COOKIE['unm'];}?>" required="required">
                                 </div>
 								<div class="col-6 form-group">
-									<input type="password" name="pass" class="form-control p-4" placeholder="password" required="required">
+									<input type="password" name="pass" class="form-control p-4" placeholder="password" value="<?php if(isset($_COOKIE['pass'])){ echo $_COOKIE['pass'];}?>"  required="required">
+								</div>
+								
+								<div class="col-6 form-group">
+									<input type="checkbox" name="rem" class="p-4"> : Remember Me
 								</div>
 								
 								<div class="col-6 form-group">

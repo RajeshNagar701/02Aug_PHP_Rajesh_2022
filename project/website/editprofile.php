@@ -90,6 +90,32 @@ include_once('header.php');
 									<input type="file" name="file" class="form-control" >
 									<img src="img/upload/<?php echo $fetch->file?>" style="width:50px;height:50px" alt="">
 								</div>
+								<div class="col-6 form-group">
+									<select name="cid" class="form-control "  required="required">
+										<option value="">Select Country</option>
+										<?php
+										foreach($country as $c)
+										{
+											if($c->cid==$fetch->cid)
+											{
+										?>
+											<option value="<?php echo $c->cid?>" selected>
+															<?php echo $c->cnm?>
+											</option>
+										<?php		
+											}
+											else
+											{
+										?>
+											<option value="<?php echo $c->cid?>">
+															<?php echo $c->cnm?>
+											</option>
+										<?php										
+											}
+										}
+										?>
+									</select>
+								</div>
 								
 								<div class="col-6 form-group">
 									<button type="submit" name="submit" class="btn btn-primary py-3 px-5" type="submit">Save</button>

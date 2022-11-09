@@ -53,9 +53,23 @@ if(isset($_SESSION['user']))
 								</div>
                                 
 								<div class="col-6 form-group">
+									<select name="cid" class="form-control "  required="required">
+										<option value="">Select Country</option>
+										<?php
+										foreach($country as $c)
+										{
+										?>
+										<option value="<?php echo $c->cid?>">
+														<?php echo $c->cnm?>
+										</option>
+										<?php		
+										}
+										?>
+									</select>
+								</div>
+								<div class="col-6 form-group">
 									<input type="file" name="file" class="form-control "  required="required">
 								</div>
-								
 								<div class="col-6 form-group">
 									<button type="submit" name="submit" class="btn btn-primary py-3 px-5" type="submit">Register</button>
 								</div>
