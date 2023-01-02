@@ -28,19 +28,18 @@ if(isset($_SESSION['user']))
             <div class="row">
                 <div class="col-lg-12 mb-2">
                     <div class="contact-form bg-light mb-4" style="padding: 30px;">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{url('/register')}}" method="post" enctype="multipart/form-data">
+							@csrf
                             <div class="row">
                                 <div class="col-6 form-group">
                                     <input type="text" class="form-control p-4" name="name" placeholder="Your Name" required="required">
                                 </div>
+								
 								<div class="col-6 form-group">
-                                    <input type="email" name="email" class="form-control p-4" placeholder="Your Email" required="required">
+                                    <input type="text" name="username" class="form-control p-4" placeholder="Your User Name" required="required">
                                 </div>
 								<div class="col-6 form-group">
-                                    <input type="text" name="unm" class="form-control p-4" placeholder="Your User Name" required="required">
-                                </div>
-								<div class="col-6 form-group">
-									<input type="password" name="pass" class="form-control p-4"  placeholder="password" required="required">
+									<input type="password" name="password" class="form-control p-4"  placeholder="password" required="required">
 								</div>
 								<div class="col-6 form-group">
 									<h6>Choose Gender</h6>
@@ -61,13 +60,16 @@ if(isset($_SESSION['user']))
 										foreach($country as $c)
 										{
 										?>
-										<option value="<?php echo $c->cid?>">
+										<option value="<?php echo $c->id?>">
 														<?php echo $c->cnm?>
 										</option>
 										<?php		
 										}
 										?>
 									</select>
+								</div>
+								<div class="col-6 form-group">
+									<input type="number" name="mobile" class="form-control p-4"  placeholder="mobile" required="required">
 								</div>
 								<div class="col-6 form-group">
 									<input type="file" name="file" class="form-control "  required="required">

@@ -1,5 +1,7 @@
 @extends('frontend.layout.structure')
 @section('main_section')
+
+@include('sweetalert::alert')
 <?php
 if(isset($_SESSION['user']))
 {
@@ -27,14 +29,15 @@ if(isset($_SESSION['user']))
             <div class="row">
                 <div class="col-lg-12 mb-2">
                     <div class="contact-form bg-light mb-4" style="padding: 30px;">
-                        <form method="post">
+                        <form method="post" action="{{url('/userlogin')}}">
+						@csrf
                             <div class="row">
                                
                                 <div class="col-6 form-group">
-                                    <input type="text"  name="unm" class="form-control p-4" placeholder="Your Email" value="<?php if(isset($_COOKIE['unm'])){ echo $_COOKIE['unm'];}?>" required="required">
+                                    <input type="text"  name="username" class="form-control p-4" placeholder="Your Email" value="<?php if(isset($_COOKIE['unm'])){ echo $_COOKIE['unm'];}?>" required="required">
                                 </div>
 								<div class="col-6 form-group">
-									<input type="password" name="pass" class="form-control p-4" placeholder="password" value="<?php if(isset($_COOKIE['pass'])){ echo $_COOKIE['pass'];}?>"  required="required">
+									<input type="password" name="password" class="form-control p-4" placeholder="password" value="<?php if(isset($_COOKIE['pass'])){ echo $_COOKIE['pass'];}?>"  required="required">
 								</div>
 								
 								<div class="col-6 form-group">

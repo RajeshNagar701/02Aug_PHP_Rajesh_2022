@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\customerController1; // controller simple type 1
+use App\Http\Controllers\customerController2;  // controller --invokable type 2
+use App\Http\Controllers\customerController;  // controller --resource type 3 all are ready in controller
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +17,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// controller type & routting method 
 
+//method 1 routing / code in this function
+/*
+Route::get('/register', function () {
+    return view('frontend.register');
+});
+*/
+
+// method 2 routing by Controllers 
+//Route::get('/register',[customerController1::class,'signup']);  // simple controller call
+//Route::get('/login',[customerController1::class,'login']);
+
+
+//Route::get('/invoke',customerController2::class); // --invokable controller call
+
+
+Route::get('/register',[customerController::class,'index']);  // simple controller call
+Route::post('/register',[customerController::class,'store']);
+
+
+Route::get('/login',[customerController::class,'login']);
+Route::post('/userlogin',[customerController::class,'userlogin']);
+Route::get('/logout',[customerController::class,'logout']);
+
+//============================================================
 Route::get('/', function () {
     return view('frontend.index');
 });
@@ -58,13 +87,6 @@ Route::get('/testimonial', function () {
     return view('frontend.testimonial');
 });
 
-Route::get('/login', function () {
-    return view('frontend.login');
-});
-
-Route::get('/register', function () {
-    return view('frontend.register');
-});
 
 
 //===============================================Admin
@@ -87,9 +109,5 @@ Route::get('/add_employee', function () {
 Route::get('/manage_employee', function () {
     return view('backend.manage_employee');
 });
-Route::get('/manage_user', function () {
-    return view('backend.manage_user');
-});
-Route::get('/admin_logout', function () {
-    
-});
+Route::get('/manage_user',[customerController::class,'manage_user']);
+Route::get('/admin_logout',[customerController::class,'admin_logout']);

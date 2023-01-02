@@ -1,3 +1,5 @@
+@include('sweetalert::alert')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +43,7 @@
 	}
 	?>
 
-
+	@include('sweetalert::alert')
 
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark py-3 px-lg-5 d-none d-lg-block">
@@ -102,28 +104,22 @@
                         </div>
 						<a href="contact" class="nav-item nav-link <?php active('contact')?>">Contact</a>
                         
-						<?php
 						
-						if(isset($_SESSION['name']))
-						{
-						?>
+						@if(session()->has('userId'))
+						
 							<div class="nav-item dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Hi <?php echo $_SESSION['name']?></a>
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Hi {{session('name')}}</a>
 								<div class="dropdown-menu rounded-0 m-0">
 									<a href="profile" class="dropdown-item <?php active('team')?>">Profile</a>
 									<a href="testimonial" class="dropdown-item <?php active('testimonial')?>">Testimonial</a>
 								</div>
 							</div>
 							<a href="logout" class="nav-item nav-link  <?php active('logout')?>">Logout</a>
-						<?php
-						}
-						else
-						{
-						?>
+						
+						@else
+						
 							<a href="login" class="nav-item nav-link  <?php active('login')?>">Login</a>
-						<?php
-						}
-						?>
+						@endif
                     </div>
                 </div>
             </nav>

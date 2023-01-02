@@ -9,10 +9,13 @@
                         <table  class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+									<th>Profile</th>
+                                    <th>Id</th>
                                     <th>First Name</th>
-                                    <th>Email</th>
-                                    <th>Username</th>
+                                    <th>User Name</th>
+                                    <th>gen</th>
+									<th>Lag</th>
+									<th>Mobile</th>
 									<th>Delete</th>
 									<th>Edit</th>
                                 </tr>
@@ -23,10 +26,13 @@
 							{
 							?>
                                 <tr>
-                                    <td><?php echo $d->uid?></td>
-                                    <td><?php echo $d->name?></td>
-                                    <td><?php echo $d->email?></td>
-                                    <td>@<?php echo $d->unm?></td>
+									<td><img src="{{url('frontend/img/upload/'.$d->file)}}" width="50px"></td>
+                                    <td>{{$d->id}}</td>
+                                    <td>{{$d->name}}</td>
+                                    <td>{{$d->username}}</td>
+                                    <td>{{$d->gen}}</td>
+									<td>{{$d->lag}}</td>
+									<td>{{$d->mobile}}</td>
 									<td><a href="delete?deluid=<?php echo $d->uid?>" class="btn btn-danger">Delete</a></td>
 									<td><a href="admin_custedit?edtbtn=<?php echo $d->uid?>" class="btn btn-primary">Edit</a></td>
                                 </tr>
