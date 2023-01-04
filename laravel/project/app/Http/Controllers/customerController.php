@@ -33,6 +33,7 @@ class customerController extends Controller
 	function userlogin(Request $request)
 	{
 		$username=$request->username;
+					  //where('username',$username) // = is default
 		$data=customer::where('username','=',$username)->first();
 		if($data)   // if(! $data || Hash::check($request->password,$data->password))
 		{
@@ -129,9 +130,12 @@ class customerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-		
+		//$data=customer::where("id",'=',session('userId'))->first();  single data fetch
+		$data=customer::join('countries','customers.cid','=','countries.id')
+		->where("customers.id",'=',session('userId'))->first(['customers.*','countries.cnm']); //(['customers.*','countries.cnm']);
+		return view('frontend.profile',['fetch'=>$data]);
     }
 
     /**
@@ -142,7 +146,9 @@ class customerController extends Controller
      */
     public function edit($id)
     {
-        //
+		$country=countrie::all();
+        $data=customer::where("id",'=',$id)->first();
+		return view('frontend.editprofile',['country'=>$country,'fetch'=>$data]);
     }
 
     /**
@@ -165,6 +171,10 @@ class customerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //$data=customer::where("id",'=',$id)->delete();
+		$data=customer::find($id);
+		$data->delete();
+		Alert::success('success', 'Delete Success');
+		return back();
     }
 }

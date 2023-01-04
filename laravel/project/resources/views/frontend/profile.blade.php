@@ -20,15 +20,16 @@
             <div class="" style="padding-left:20%;padding-right:20%">
                 
 				<div class="team-item">
-                    <img class="img-fluid w-100" src="{{url('frontend/img/upload/<?php echo $fetch->file?>" alt="">
+                    <img class="" src="{{url('frontend/img/upload/'.$fetch->file)}}" width="50px" alt="">
                     <div class="position-relative py-4">
                         <h4 class="text-uppercase"><?php echo $fetch->name?></h4>
-						<p class="m-0">Name :<?php echo $fetch->name?></p>
-                        <p class="m-0">Email :<?php echo $fetch->email?></p>
-						<p class="m-0">Gender :<?php echo $fetch->gen?></p>
-                        <p class="m-0">Languages :<?php echo $fetch->lag?></p>
-						<p class="m-0">Country :<?php echo $fetch->cnm?></p>
-						<button class="btn btn-success mt-2"><a href="editprofile?btnuid=<?php echo $fetch->uid?>"> Edit</a></button>
+						<p class="m-0">Name :{{$fetch->name}}</p>
+                        <p class="m-0">Email :{{$fetch->username}}</p>
+						<p class="m-0">Gender :{{$fetch->gen}}</p>
+                        <p class="m-0">Languages :{{$fetch->lag}}</p>
+						<p class="m-0">Country :{{$fetch->cnm}}</p>
+						<p class="m-0">Mobile :{{$fetch->mobile}}</p>
+						<button class="btn btn-success mt-2"><a href="editprofile/<?php echo $fetch->id?>"> Edit</a></button>
                     </div>
                 </div>
                

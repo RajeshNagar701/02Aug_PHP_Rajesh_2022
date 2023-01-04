@@ -26,11 +26,9 @@
                                 <div class="col-6 form-group">
                                     <input type="text" class="form-control p-4" value="<?php echo $fetch->name?>" name="name" placeholder="Your Name"  required="required">
                                 </div>
+								
 								<div class="col-6 form-group">
-                                    <input type="email" name="email" class="form-control p-4" value="<?php echo $fetch->email?>" placeholder="Your Email" required="required">
-                                </div>
-								<div class="col-6 form-group">
-                                    <input type="text" name="unm" class="form-control p-4" value="<?php echo $fetch->unm?>" placeholder="Your User Name" readonly required="required">
+                                    <input type="text" name="username" class="form-control p-4" value="<?php echo $fetch->username?>" placeholder="Your User Name" readonly required="required">
                                 </div>
 								
 								<div class="col-6 form-group">
@@ -86,7 +84,7 @@
                                 
 								<div class="col-6 form-group">
 									<input type="file" name="file" class="form-control" >
-									<img src="{{url('frontend/img/upload/<?php echo $fetch->file?>" style="width:50px;height:50px" alt="">
+									<img src="{{url('frontend/img/upload/'.$fetch->file)}}" width="50px" alt="">
 								</div>
 								<div class="col-6 form-group">
 									<select name="cid" class="form-control "  required="required">
@@ -94,7 +92,7 @@
 										<?php
 										foreach($country as $c)
 										{
-											if($c->cid==$fetch->cid)
+											if($c->id==$fetch->cid)
 											{
 										?>
 											<option value="<?php echo $c->cid?>" selected>
@@ -120,7 +118,7 @@
 								</div>
 								<div class="col-6 form-group">
 									<br>
-									<a href="profile">Back</a>
+									<a href="{{url('/profile')}}">Back</a>
 								</div>
                             </div>
                             

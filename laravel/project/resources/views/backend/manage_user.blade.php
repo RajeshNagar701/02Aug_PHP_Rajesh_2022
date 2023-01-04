@@ -33,8 +33,8 @@
                                     <td>{{$d->gen}}</td>
 									<td>{{$d->lag}}</td>
 									<td>{{$d->mobile}}</td>
-									<td><a href="delete?deluid=<?php echo $d->uid?>" class="btn btn-danger">Delete</a></td>
-									<td><a href="admin_custedit?edtbtn=<?php echo $d->uid?>" class="btn btn-primary">Edit</a></td>
+									<td><a href="delete_user/<?php echo $d->id?>" class="btn btn-danger">Delete</a></td>
+									
                                 </tr>
                             <?php
 							}

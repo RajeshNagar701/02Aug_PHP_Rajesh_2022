@@ -42,6 +42,10 @@ Route::get('/login',[customerController::class,'login']);
 Route::post('/userlogin',[customerController::class,'userlogin']);
 Route::get('/logout',[customerController::class,'logout']);
 
+Route::get('/profile',[customerController::class,'show']);
+Route::get('/editprofile/{id}',[customerController::class,'edit']);
+
+
 //============================================================
 Route::get('/', function () {
     return view('frontend.index');
@@ -110,4 +114,5 @@ Route::get('/manage_employee', function () {
     return view('backend.manage_employee');
 });
 Route::get('/manage_user',[customerController::class,'manage_user']);
+Route::get('/delete_user/{id}',[customerController::class,'destroy']);
 Route::get('/admin_logout',[customerController::class,'admin_logout']);
