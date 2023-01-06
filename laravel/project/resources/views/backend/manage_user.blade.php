@@ -17,7 +17,7 @@
 									<th>Lag</th>
 									<th>Mobile</th>
 									<th>Delete</th>
-									<th>Edit</th>
+									<th>status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,6 +34,7 @@
 									<td>{{$d->lag}}</td>
 									<td>{{$d->mobile}}</td>
 									<td><a href="delete_user/<?php echo $d->id?>" class="btn btn-danger">Delete</a></td>
+									<td><a href="userstatus/<?php echo $d->id?>" class="btn btn-danger">{{$d->status}}</a></td>
 									
                                 </tr>
                             <?php

@@ -28,18 +28,38 @@ if(isset($_SESSION['user']))
             <div class="row">
                 <div class="col-lg-12 mb-2">
                     <div class="contact-form bg-light mb-4" style="padding: 30px;">
+						<!--@if ($errors->any())
+							<div class="alert alert-danger">
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+						@endif
+						-->
                         <form action="{{url('/register')}}" method="post" enctype="multipart/form-data">
 							@csrf
                             <div class="row">
                                 <div class="col-6 form-group">
-                                    <input type="text" class="form-control p-4" name="name" placeholder="Your Name" required="required">
+                                    <input type="text" class="form-control p-4" value="{{old('name')}}" name="name" placeholder="Your Name" >
+									@error('name')
+										<div class="alert alert-danger">{{ $message }}</div>
+									@enderror
+
                                 </div>
 								
 								<div class="col-6 form-group">
-                                    <input type="text" name="username" class="form-control p-4" placeholder="Your User Name" required="required">
-                                </div>
+                                    <input type="text" name="username" class="form-control p-4" value="{{old('username')}}" placeholder="Your User Name" >
+									@error('username')
+										<div class="alert alert-danger">{{ $message }}</div>
+									@enderror
+								</div>
 								<div class="col-6 form-group">
-									<input type="password" name="password" class="form-control p-4"  placeholder="password" required="required">
+									<input type="password" name="password" class="form-control p-4" value="{{old('password')}}"  placeholder="password" >
+									@error('password')
+										<div class="alert alert-danger">{{ $message }}</div>
+									@enderror
 								</div>
 								<div class="col-6 form-group">
 									<h6>Choose Gender</h6>
@@ -54,7 +74,7 @@ if(isset($_SESSION['user']))
 								</div>
                                 
 								<div class="col-6 form-group">
-									<select name="cid" class="form-control "  required="required">
+									<select name="cid" class="form-control " >
 										<option value="">Select Country</option>
 										<?php
 										foreach($country as $c)
@@ -67,12 +87,21 @@ if(isset($_SESSION['user']))
 										}
 										?>
 									</select>
+									@error('cid')
+										<div class="alert alert-danger">{{ $message }}</div>
+									@enderror
 								</div>
 								<div class="col-6 form-group">
-									<input type="number" name="mobile" class="form-control p-4"  placeholder="mobile" required="required">
+									<input type="number" name="mobile" value="{{old('mobile')}}" class="form-control p-4"  placeholder="mobile" >
+									@error('mobile')
+										<div class="alert alert-danger">{{ $message }}</div>
+									@enderror
 								</div>
 								<div class="col-6 form-group">
-									<input type="file" name="file" class="form-control "  required="required">
+									<input type="file" name="file" class="form-control " >
+									@error('file')
+										<div class="alert alert-danger">{{ $message }}</div>
+									@enderror
 								</div>
 								<div class="col-6 form-group">
 									<button type="submit" name="submit" class="btn btn-primary py-3 px-5" type="submit">Register</button>

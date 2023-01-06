@@ -44,6 +44,9 @@ Route::get('/logout',[customerController::class,'logout']);
 
 Route::get('/profile',[customerController::class,'show']);
 Route::get('/editprofile/{id}',[customerController::class,'edit']);
+Route::post('/editprofile/{id}',[customerController::class,'update']);
+
+Route::get('/userstatus/{id}',[customerController::class,'userstatus']);
 
 
 //============================================================

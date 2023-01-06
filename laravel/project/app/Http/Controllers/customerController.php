@@ -104,6 +104,17 @@ class customerController extends Controller
      */
     public function store(Request $request)
     {
+		
+		$validated = $request->validate([
+        'name' => 'required|alpha',
+        'username' => 'required|unique:customers',
+	    'password' => 'required|min:6',
+		'mobile'=>'required|numeric|digits:10',
+		'cid'=>'required',
+	    'file' => 'required|mimes:jpeg,png,jpg,gif,svg'
+		]);
+
+		
         $data=new customer;
 		$data->name=$request->name;
 		$data->username=$request->username;
@@ -158,9 +169,38 @@ class customerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+		
+		$validated = $request->validate([
+        'name' => 'required|alpha',
+		'mobile'=>'required|numeric|digits:10',
+		'cid'=>'required',
+	    'file' => 'mimes:jpeg,png,jpg,gif,svg'
+		]);
+		
+        $data=customer::find($id);
+		$data->name=$request->name;
+		$data->username=$request->username;
+		$data->gen=$request->gen;
+		$data->lag=implode(",",$request->lag);
+		$data->cid=$request->cid ;
+		$data->mobile=$request->mobile;
+		
+		
+		// img upload
+		$old_file=$data->file;
+		if($request->hasFile('file'))// check file or not
+		{
+			$file=$request->file('file');		
+			$filename=time().'_img.'.$request->file('file')->getClientOriginalExtension();
+			$file->move('frontend/img/upload/',$filename);  // use move for move image in public/images
+			$data->file=$filename; // name store in db
+			unlink('frontend/img/upload/'.$old_file);
+		}
+		$data->update();
+		Alert::warning('success', 'Update Success');
+		return redirect('/profile');
     }
 
     /**
@@ -177,4 +217,31 @@ class customerController extends Controller
 		Alert::success('success', 'Delete Success');
 		return back();
     }
+	
+	
+	public function userstatus($id)
+    {
+		$data=customer::find($id);
+		$status=$data->status;
+		if($status=="Block")
+		{
+			$data->status="Unblock";
+			$data->update();
+			echo "<script>
+				alert('Unblock Success');
+				</script>";
+			return back();	
+			
+		}
+		else
+		{
+			$data->status="Block";
+			$data->update();
+			echo "<script>
+				alert('Block Success');
+				</script>";
+			return back();	
+		}
+    }
+	
 }
